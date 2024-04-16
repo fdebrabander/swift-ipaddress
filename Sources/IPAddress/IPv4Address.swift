@@ -1,35 +1,10 @@
-enum IPAddressError : Error {
-    case InvalidFormat(String)
-    case ValueOutOfRange(String)
-    case InvalidPrefix(String)
-}
-
-/// Represent a IPv4 address
-class IPv4Address : CustomStringConvertible {
+/// Represent an IPv4 address
+struct IPv4Address : CustomStringConvertible {
     internal var ip: Int
 
     /// Create a new IP address instance from dot-decimal notation 'a.b.c.d'.
     init(string: String) throws {
-        let chunks = string.split(separator: ".")
-        guard chunks.count == 4 else {
-            throw IPAddressError.InvalidFormat("does not conform to format a.b.c.d")
-        }
-
-        ip = 0
-        var shift = 24
-        for chunk in chunks {
-            let byte_value = Int(chunk)
-            if let byte_value {
-                if !(0...255 ~= byte_value) {
-                    throw IPAddressError.ValueOutOfRange("numbers of address must be in range [0, 255]")
-                }
-                
-                ip += byte_value << shift
-                shift -= 8
-            } else {
-                throw IPAddressError.InvalidFormat("invalid ip address format")
-            }
-        }
+        ip = try DotDecimalToInt(ip: string)
     }
     
     internal init(address: Int) {
@@ -59,6 +34,6 @@ class IPv4Address : CustomStringConvertible {
     }
     
     var description: String {
-        return "\((ip >> 24) & 0xFF).\((ip >> 16) & 0xFF).\((ip >> 8) & 0xFF).\(ip & 0xFF)"
+        IntToDotDecimal(ip: ip)
     }
 }
