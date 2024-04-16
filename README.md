@@ -1,4 +1,4 @@
-# Swift IPAdress library
+# Swift IPAddress library
 Library that contains types for IP addresses and networks.
 
 ```swift
