@@ -22,3 +22,24 @@ let package = Package(
     ]
 )
 ```
+
+## Quick guide
+Create IPv4Address and IPv4Network objects
+
+```swift
+let ip1 = try IPv4Address(string: "192.168.0.1")
+let ip2 = try IPv4Address(string: "10.0.0.1")
+let network = try IPv4Network(string: "10.0.0.0/8")
+```
+
+Compare IP addresses
+
+```swift
+assert(ip1 != ip2, "should not match")
+```
+
+Determine if a network contains an IP address
+
+```swift
+assert(network.contains(ipaddress: ip1), "should contain ip")
+```
