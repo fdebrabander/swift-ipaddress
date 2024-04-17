@@ -55,8 +55,7 @@ func DotDecimalPrefixToInt(address: String) throws -> (ip: Int, prefix: Int) {
         throw IPAddressError.InvalidFormat("does not conform to format a.b.c.d/e")
     }
     
-    let prefix = Int(chunks[1])
-    guard let prefix else {
+    guard let prefix = Int(chunks[1]) else {
         throw IPAddressError.InvalidFormat("network prefix not a valid number")
     }
     guard 0...32 ~= prefix else {
