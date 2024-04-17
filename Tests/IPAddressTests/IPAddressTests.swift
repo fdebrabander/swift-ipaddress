@@ -52,4 +52,13 @@ final class IPAddressTests: XCTestCase {
         try XCTAssertTrue(IPv4Address(string: "198.18.0.1").isPrivate)
         try XCTAssertFalse(IPv4Address(string: "198.20.0.0").isPrivate)
     }
+    
+    func testEquatable() throws {
+        XCTAssertTrue(try IPv4Address(string: "192.168.0.1") == IPv4Address(string: "192.168.0.1"))
+        XCTAssertFalse(try IPv4Address(string: "192.168.0.1") == IPv4Address(string: "192.168.0.0"))
+        XCTAssertFalse(try IPv4Address(string: "192.168.0.1") == IPv4Address(string: "192.168.0.2"))
+
+        XCTAssertFalse(try IPv4Address(string: "192.168.0.1") != IPv4Address(string: "192.168.0.1"))
+        XCTAssertTrue(try IPv4Address(string: "192.168.0.1") != IPv4Address(string: "192.168.0.0"))
+    }
 }

@@ -1,5 +1,5 @@
 /// Represent an IPv4 network address
-struct IPv4Network: CustomStringConvertible {
+struct IPv4Network: CustomStringConvertible, Equatable {
     internal let ip: Int
     internal let prefix: Int
 

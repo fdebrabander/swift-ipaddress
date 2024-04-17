@@ -1,13 +1,13 @@
 /// Represent an IPv4 address
-struct IPv4Address : CustomStringConvertible {
-    internal var ip: Int
+struct IPv4Address : CustomStringConvertible, Equatable {
+    internal let ip: Int
 
     /// Create a new IP address instance from dot-decimal notation 'a.b.c.d'.
     init(string: String) throws {
         ip = try DotDecimalToInt(ip: string)
     }
     
-    internal init(address: Int) {
+    init(address: Int) {
         ip = address
     }
     

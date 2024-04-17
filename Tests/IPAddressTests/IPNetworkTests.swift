@@ -23,4 +23,13 @@ final class IPNetworkTests: XCTestCase {
         try XCTAssertFalse(IPv4Network(string: "10.0.0.0/8").contains(network: IPv4Network(string: "10.0.0.0/7")))
         try XCTAssertFalse(IPv4Network(string: "10.0.0.0/8").contains(network: IPv4Network(string: "9.255.0.0/16")))
     }
+    
+    func testEquatable() throws {
+        XCTAssertTrue(try IPv4Network(string: "10.0.0.0/8") == IPv4Network(string: "10.0.0.0/8"))
+        XCTAssertFalse(try IPv4Network(string: "10.0.0.0/8") == IPv4Network(string: "11.0.0.0/8"))
+        XCTAssertFalse(try IPv4Network(string: "10.0.0.0/8") == IPv4Network(string: "10.0.0.0/9"))
+        
+        XCTAssertFalse(try IPv4Network(string: "10.0.0.0/8") != IPv4Network(string: "10.0.0.0/8"))
+        XCTAssertTrue(try IPv4Network(string: "10.0.0.0/8") != IPv4Network(string: "11.0.0.0/8"))
+    }
 }
