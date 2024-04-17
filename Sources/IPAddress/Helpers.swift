@@ -29,8 +29,7 @@ func DotDecimalToInt(ip string: String) throws -> Int {
     var ip = 0
     var shift = 24
     for chunk in chunks {
-        let byte_value = Int(chunk)
-        if let byte_value {
+        if let byte_value = Int(chunk) {
             if !(0...255 ~= byte_value) {
                 throw IPAddressError.ValueOutOfRange("numbers of address must be in range [0, 255]")
             }
