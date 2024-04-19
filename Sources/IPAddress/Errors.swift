@@ -1,4 +1,4 @@
-enum IPAddressError : Error {
+public enum IPAddressError : Error {
     case InvalidFormat(String)
     case ValueOutOfRange(String)
     case InvalidPrefix(String)

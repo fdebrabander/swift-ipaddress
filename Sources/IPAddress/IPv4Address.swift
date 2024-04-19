@@ -1,23 +1,23 @@
 /// Represent an IPv4 address
-struct IPv4Address : CustomStringConvertible, Equatable {
-    internal let ip: Int
+public struct IPv4Address : CustomStringConvertible, Equatable {
+    public let ip: Int
 
     /// Create a new IP address instance from dot-decimal notation 'a.b.c.d'.
-    init(string: String) throws {
+    public init(string: String) throws {
         ip = try DotDecimalToInt(ip: string)
     }
     
-    init(address: Int) {
+    public init(address: Int) {
         ip = address
     }
     
     /// Determine if the IP address is part of the loopback address range 127.0.0.0/8
-    var isLoopback: Bool {
+    public var isLoopback: Bool {
         return IPv4Network(network: 0x7F000000, prefix: 8).contains(ipaddress: self)
     }
     
     /// Determine if the IP address is part of any of the private network ranges, such as 10.0.0.0/8.
-    var isPrivate: Bool {
+    public var isPrivate: Bool {
         return
             // 10.0.0.0/8
             IPv4Network(network: 0x0A000000, prefix: 8).contains(ipaddress: self) ||
@@ -33,7 +33,7 @@ struct IPv4Address : CustomStringConvertible, Equatable {
             IPv4Network(network: 0xC6120000, prefix: 15).contains(ipaddress: self)
     }
     
-    var description: String {
+    public var description: String {
         IntToDotDecimal(ip: ip)
     }
 }

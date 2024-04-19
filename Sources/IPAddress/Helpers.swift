@@ -1,12 +1,12 @@
 /// Convert a routing prefix to a subnet mask.
 ///
 /// For example when the prefix is /8 the integer value 0xFF000000 is returned.
-func PrefixToSubnetMask(prefix: Int) -> Int {
+public func PrefixToSubnetMask(prefix: Int) -> Int {
     return 0xFFFFFFFF - (0xFFFFFFFF >> prefix)
 }
 
 /// Convert an integer representing an IPv4 address to a dot-decimal string.
-func IntToDotDecimal(ip: Int) -> String {
+public func IntToDotDecimal(ip: Int) -> String {
     return "\((ip >> 24) & 0xFF).\((ip >> 16) & 0xFF).\((ip >> 8) & 0xFF).\(ip & 0xFF)"
 }
 
@@ -15,12 +15,12 @@ func IntToDotDecimal(ip: Int) -> String {
 /// - Parameters:
 ///   - ip: IP address as an integer value
 ///   - prefix: Routing prefix of the IP address
-func IntPrefixToDotDecimal(ip: Int, prefix: Int) -> String {
+public func IntPrefixToDotDecimal(ip: Int, prefix: Int) -> String {
     return IntToDotDecimal(ip: ip) + "/\(prefix)"
 }
 
 /// Convert IPv4 address in dot-decimal notation to an integer.
-func DotDecimalToInt(ip string: String) throws -> Int {
+public func DotDecimalToInt(ip string: String) throws -> Int {
     let chunks = string.split(separator: ".")
     guard chunks.count == 4 else {
         throw IPAddressError.InvalidFormat("does not conform to format a.b.c.d")
@@ -49,7 +49,7 @@ func DotDecimalToInt(ip string: String) throws -> Int {
 ///   - address: IPv4 address with routing prefix in format 'a.b.c.d/e'
 ///
 /// - Returns: Tuple with the IPv4 address and the routing prefix as integers.
-func DotDecimalPrefixToInt(address: String) throws -> (ip: Int, prefix: Int) {
+public func DotDecimalPrefixToInt(address: String) throws -> (ip: Int, prefix: Int) {
     let chunks = address.split(separator: "/")
     guard chunks.count == 2 else {
         throw IPAddressError.InvalidFormat("does not conform to format a.b.c.d/e")
