@@ -2,7 +2,9 @@
 public struct IPv4Address : CustomStringConvertible, Equatable {
     public let ip: Int
 
-    /// Create a new IP address instance from dot-decimal notation 'a.b.c.d'.
+    /// Create a new IP address instance
+    /// 
+    /// - Parameter string: IPv4 address in dot-decimal notation `a.b.c.d`.
     public init(string: String) throws {
         ip = try DotDecimalToInt(ip: string)
     }
@@ -11,7 +13,7 @@ public struct IPv4Address : CustomStringConvertible, Equatable {
         ip = address
     }
     
-    /// Determine if the IP address is part of the loopback address range 127.0.0.0/8
+    /// Determine if the IP address is part of the loopback address range `127.0.0.0/8`
     public var isLoopback: Bool {
         return IPv4Network(network: 0x7F000000, prefix: 8).contains(ipaddress: self)
     }

@@ -3,13 +3,20 @@ public struct IPv4Network: CustomStringConvertible, Equatable {
     public let ip: Int
     public let prefix: Int
 
-    /// Create a new IP network instance from a dot-decimal notation with prefix 'a.b.c.d/e'.
+    /// Create a new IPv4Network instance
+    /// 
+    /// - Parameter string: Network adreess in dot-decimal notation `a.b.c.d/e`.
     public init(string: String) throws {
         let address = try DotDecimalPrefixToInt(address: string)
         ip = address.ip
         prefix = address.prefix
     }
     
+    /// Create a new IPv4Network instance.
+    /// 
+    /// - Parameters:
+    ///   - network: Network address as a 32-bit integer value.
+    ///   - prefix: Routing prefix in the range 0...32.
     public init(network: Int, prefix: Int) {
         ip = network
         self.prefix = prefix
@@ -26,7 +33,7 @@ public struct IPv4Network: CustomStringConvertible, Equatable {
         PrefixToSubnetMask(prefix: prefix)
     }
     
-    /// The network address as IPv4Address
+    /// The network address as an IPv4Address
     public var networkAddress: IPv4Address {
         return IPv4Address(address: ip)
     }
