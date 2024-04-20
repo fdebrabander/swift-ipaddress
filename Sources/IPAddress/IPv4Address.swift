@@ -38,4 +38,24 @@ public struct IPv4Address : CustomStringConvertible, Equatable {
     public var description: String {
         IntToDotDecimal(ip: ip)
     }
+
+    /// Create an IPv4Network for this IPv4Address
+    /// 
+    /// The created IPv4Network will have its host bits set to zero.
+    /// 
+    /// ```swift
+    /// Create an IPv4Network for network 192.168.0.0/16
+    /// let ip = try IPv4Address(string: "192.168.1.10")
+    /// ip.network(withPrefix: 16)
+    /// ```
+    /// 
+    /// - Parameter prefix: Routing prefix in the range 0...32.
+    /// - Returns: IPv4Network based on this IP address and the given routing prefix.
+    public func network(withPrefix prefix: Int) -> IPv4Network? {
+        guard 0...32 ~= prefix else {
+            return nil
+        }
+        let network = ip & PrefixToSubnetMask(prefix: prefix)
+        return IPv4Network(network: network, prefix: prefix)
+    }
 }

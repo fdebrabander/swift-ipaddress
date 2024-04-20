@@ -41,5 +41,13 @@ assert(ip1 != ip2, "should not match")
 Determine if a network contains an IP address
 
 ```swift
-assert(network.contains(ipaddress: ip1), "should contain ip")
+assert(network.contains(ipaddress: ip2), "should contain ip")
+```
+
+Conversion between the different types
+
+```swift
+// Create an IPv4Network for network 192.168.0.0/16
+let ip = try IPv4Address(string: "192.168.1.10")
+ip.network(withPrefix: 16)
 ```
