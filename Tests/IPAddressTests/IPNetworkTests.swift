@@ -23,6 +23,14 @@ final class IPNetworkTests: XCTestCase {
         try XCTAssertFalse(IPv4Network(string: "10.0.0.0/8").contains(network: IPv4Network(string: "10.0.0.0/7")))
         try XCTAssertFalse(IPv4Network(string: "10.0.0.0/8").contains(network: IPv4Network(string: "9.255.0.0/16")))
     }
+
+    func testNetworkContainsIp() throws {
+        try XCTAssertFalse(IPv4Network(string: "192.168.1.0/24").contains(ipaddress: IPv4Address(string: "192.167.255.255")))
+        try XCTAssertTrue(IPv4Network(string: "192.168.1.0/24").contains(ipaddress: IPv4Address(string: "192.168.1.0")))
+        try XCTAssertTrue(IPv4Network(string: "192.168.1.0/24").contains(ipaddress: IPv4Address(string: "192.168.1.1")))
+        try XCTAssertTrue(IPv4Network(string: "192.168.1.0/24").contains(ipaddress: IPv4Address(string: "192.168.1.255")))
+        try XCTAssertFalse(IPv4Network(string: "192.168.1.0/24").contains(ipaddress: IPv4Address(string: "192.169.0.0")))
+    }
     
     func testEquatable() throws {
         XCTAssertTrue(try IPv4Network(string: "10.0.0.0/8") == IPv4Network(string: "10.0.0.0/8"))

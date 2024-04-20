@@ -62,7 +62,7 @@ final class IPAddressTests: XCTestCase {
         XCTAssertTrue(try IPv4Address(string: "192.168.0.1") != IPv4Address(string: "192.168.0.0"))
     }
 
-    func ipToNetwork() throws {
+    func testIpToNetwork() throws {
         let ip = try IPv4Address(string: "192.168.1.10")
         let network = ip.network(withPrefix: 16)
         XCTAssertEqual(try IPv4Network(string: "192.168.0.0/16"), network!)

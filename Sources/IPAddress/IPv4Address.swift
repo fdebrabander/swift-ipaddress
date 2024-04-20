@@ -8,7 +8,10 @@ public struct IPv4Address : CustomStringConvertible, Equatable {
     public init(string: String) throws {
         ip = try DotDecimalToInt(ip: string)
     }
-    
+
+    /// Create new IPv4Address instance.
+    /// 
+    /// - Parameter address: IPv4 address as a 32-bit integer value.
     public init(address: Int) {
         ip = address
     }
