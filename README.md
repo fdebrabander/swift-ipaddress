@@ -51,3 +51,5 @@ Conversion between the different types
 let ip = try IPv4Address(string: "192.168.1.10")
 ip.network(withPrefix: 16)
 ```
+
+For the full documentation see the [Swift Package Index](https://swiftpackageindex.com/fdebrabander/swift-ipaddress/main/documentation/ipaddress).
